@@ -12,15 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/proposal")
+@RequestMapping("/proposals")
 public class ProposalResource {
 
     @Autowired
     private ProposalService proposalService;
 
     @GetMapping(produces = "application/json")
-    public @ResponseBody
-    ResponseEntity<?> cobrancas(){
+    public @ResponseBody ResponseEntity<?> cobrancas(){
         Iterable<Proposal> proposals = proposalService.searchAllCostumers();
 
         return new ResponseEntity<>(proposals,HttpStatus.OK);

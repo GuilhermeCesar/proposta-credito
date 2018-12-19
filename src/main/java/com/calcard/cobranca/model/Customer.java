@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 
 
 @Entity
-@Table(name = "costumer")
-public class Costumer {
+@Table(name = "customer")
+public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
