@@ -20,6 +20,17 @@ public class Customer {
 	private Integer dependents;
 	private BigDecimal salary;
 
+
+
+	public Customer() {
+	}
+
+	public Customer(String fullName, String socialId) {
+		this();
+		this.fullName = fullName;
+		this.socialId = socialId;
+	}
+
 	public Long getId() {
 		return id;
 	}

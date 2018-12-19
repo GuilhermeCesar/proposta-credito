@@ -10,15 +10,24 @@ public class Proposal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date createAt;
+    private Date createdAt;
     private Date approvedAt;
     private Date disapprovedAt;
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "customer")
+    private Customer customer;
+
     public Proposal() {
-        this.createAt = new Date();
+        this.createdAt = new Date();
         status = Status.ANALYZING;
+    }
+
+    public Proposal(Customer customer) {
+        this();
+        this.customer = customer;
     }
 
     public Long getId() {
@@ -27,14 +36,6 @@ public class Proposal {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Date getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
     }
 
     public Date getApprovedAt() {
@@ -57,7 +58,23 @@ public class Proposal {
         return status;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
