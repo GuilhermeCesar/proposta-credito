@@ -19,4 +19,7 @@ public class PropostaService {
 		
 		return Arrays.asList(cliente,cliente2);		
 	}
+
+    public static class ServiceConfiguration {
+    }
 }
