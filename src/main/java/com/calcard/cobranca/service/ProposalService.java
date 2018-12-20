@@ -24,7 +24,6 @@ public class ProposalService {
 	@Autowired
 	private CustomerRepository customerRepository;
 
-
 	public Iterable<Proposal> searchAllProposals(){
 		return this.proposalRepository.findAll();
 	}
@@ -89,7 +88,7 @@ public class ProposalService {
 	}
 
 
-	private Proposal isMarried(Customer customer){
+	private Proposal creditForMarried(Customer customer){
 		BigDecimal salaryPerPerson = this.calcSalaryPerPerson(customer.getDependents(),customer.getSalary());
 		Proposal proposal = new Proposal(new Date(),customer);
 		proposal.setStatus(Status.APPROVED);
@@ -114,7 +113,7 @@ public class ProposalService {
 		return  salary.compareTo(new BigDecimal(lessThan)) < 0;
 	}
 
-	private Proposal isSingle(Customer customer){
+	private Proposal creditForSingle(Customer customer){
 		BigDecimal salaryPerPerson = this.calcSalaryPerPerson(customer.getDependents(),customer.getSalary());
 		Proposal proposal = new Proposal(new Date(),customer);
 		proposal.setStatus(Status.APPROVED);
@@ -149,8 +148,6 @@ public class ProposalService {
 		}
 
 		return customer.getCivilStatus().equals(CivilStatus.MARRIED)?
-				this.isMarried(customer):this.isSingle(customer);
+				this.creditForMarried(customer):this.creditForSingle(customer);
 	}
-
-
 }
