@@ -10,6 +10,10 @@
 - Caso você utilize Windows antigo, deve alterar o Ip do banco 
 - Utilize o comando docker-machine ip  para saber 
 
+
+Para rodar o projeto
+Você deve ter  mavem instalado na sua máquina
+- spring-boot:run
     
 
 
