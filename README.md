@@ -10,9 +10,6 @@
 - Caso você utilize Windows antigo, deve alterar o Ip do banco 
 - Utilize o comando docker-machine ip  para saber 
 
-## que ficol faltando
-- Busca por CPF
-- Swagger
-- teste unitários    
+    
 
 
