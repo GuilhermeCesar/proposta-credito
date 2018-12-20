@@ -1,12 +1,14 @@
 # Teste
 
-#Endpont
+##Endpont
 - http://localhost:8080/proposals
 
-#Para cadatrar os dados faze
-- http://localhost:8080/proposals
+##Para cadatrar os dados fake
+- http://localhost:8080/fakedata
 
-#O que ficol faltando
+## que ficol faltando
 - Busca por CPF
+- Swagger
+- teste unitários    
 
 

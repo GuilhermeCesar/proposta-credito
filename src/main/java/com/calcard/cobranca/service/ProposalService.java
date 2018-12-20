@@ -24,6 +24,10 @@ public class ProposalService {
 	@Autowired
 	private CustomerRepository customerRepository;
 
+	/**
+	 * Busca todas as {@link Proposal}
+	 * @return
+	 */
 	public Iterable<Proposal> searchAllProposals(){
 		return this.proposalRepository.findAll();
 	}
@@ -52,6 +56,11 @@ public class ProposalService {
 		}
 	}
 
+	/**
+	 * Cria uma nova {@link Proposal}
+	 * @param customerDto
+	 * @return
+	 */
    	public Proposal createProposal(CustomerDto customerDto){
 		Customer customer = new Customer(customerDto.getFullName(), customerDto.getSocialId());
 		customer.setAge(customerDto.getAge());
@@ -131,6 +140,11 @@ public class ProposalService {
 		return proposal;
 	}
 
+	/**
+	 * Analisa o {@link Customer} alterando os dados da {@link Proposal}
+	 * @param customer
+	 * @return {@link Proposal}
+	 */
 	private Proposal analizeProposal(Customer customer){
 		Proposal proposal = new Proposal(customer);
 
