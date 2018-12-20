@@ -6,6 +6,10 @@
 ##Para cadatrar os dados fake
 - http://localhost:8080/fakedata
 
+#Docker-machine
+- Caso você utilize Windows antigo, deve alterar o Ip do banco 
+- Utilize o comando docker-machine ip  para saber 
+
 ## que ficol faltando
 - Busca por CPF
 - Swagger
