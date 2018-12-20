@@ -27,6 +27,9 @@ public class Customer {
 		this.socialId = socialId;
 	}
 
+	public Customer() {
+	}
+
 	public Long getId() {
 		return id;
 	}

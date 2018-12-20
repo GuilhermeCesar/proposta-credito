@@ -1,10 +1,12 @@
 package com.calcard.cobranca.resources;
 
+import com.calcard.cobranca.Dto.CustomerDto;
 import com.calcard.cobranca.model.CivilStatus;
 import com.calcard.cobranca.model.Customer;
 import com.calcard.cobranca.model.Proposal;
 import com.calcard.cobranca.repository.CustomerRepository;
 import com.calcard.cobranca.repository.ProposalRepository;
+import com.calcard.cobranca.service.ProposalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,18 +21,25 @@ public class FakeDataResource {
     private CustomerRepository customerRepository;
     @Autowired
     private ProposalRepository proposalRepository;
+    @Autowired
+    private ProposalService proposalService;
 
     @CrossOrigin
     @GetMapping
     public String createFakeData(){
-        Customer customer = new Customer("Guilherme César Medeiros","08700209945");
-        customer.setAge(15);
-        customer.setCivilStatus(CivilStatus.SINGLE);
+        CustomerDto customerDto = new CustomerDto();
+        customerDto.setAge(25);
+        customerDto.setCivilStatus("SINGLE");
+        customerDto.setDependents(4);
+        customerDto.setGener('M');
+        customerDto.setSalary("20000");
+        customerDto.setSocialId("08700209945");
+        customerDto.setState("Santa Catarina");
+        customerDto.setFullName("Guilherme César Medeiros");
 
-        this.customerRepository.save(customer);
-        this.proposalRepository.save(new Proposal(customer));
+        this.proposalService.createProposal(customerDto);
 
-        customer = new Customer("Bruno","0870014578");
+        Customer customer = new Customer("Bruno","0870014578");
         customer.setAge(15);
         customer.setCivilStatus(CivilStatus.SINGLE);
 
