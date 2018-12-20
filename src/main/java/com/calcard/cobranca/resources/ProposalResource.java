@@ -1,5 +1,6 @@
 package com.calcard.cobranca.resources;
 
+import com.calcard.cobranca.Dto.CustomerDto;
 import com.calcard.cobranca.exception.ProposalNotExistException;
 import com.calcard.cobranca.model.Proposal;
 import com.calcard.cobranca.service.ProposalService;
@@ -31,7 +32,6 @@ public class ProposalResource {
     @GetMapping(value = "/{id}")
     public @ResponseBody ResponseEntity<?> searchProposalById(@PathVariable("id") Long id){
         try {
-            System.out.println(id);
             Proposal proposal = this.proposalService.searchProposal(id);
             return new ResponseEntity<>(proposal, HttpStatus.OK);
         }catch (ProposalNotExistException ex){
@@ -39,6 +39,18 @@ public class ProposalResource {
         }catch (Exception ex){
             ex.printStackTrace();
             return new ResponseEntity<>("Erro no servidor", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @CrossOrigin
+    @PostMapping
+    public @ResponseBody ResponseEntity<?> createProposal(@ModelAttribute CustomerDto customerDto){
+        try {
+            this.proposalService.createProposal(customerDto);
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception ex){
+            return new ResponseEntity<>("Erro ao criar o cliente",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

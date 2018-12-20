@@ -1,6 +1,7 @@
 package com.calcard.cobranca.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -13,6 +14,12 @@ public class Proposal {
     private Date createdAt;
     private Date approvedAt;
     private Date disapprovedAt;
+    private BigDecimal maxLimit;
+    private BigDecimal minLimit;
+
+    @Column(name = "reason_disaprodev")
+    private String reasonDisaproved;
+
     @Enumerated(EnumType.STRING)
     private Status status;
 
@@ -20,7 +27,7 @@ public class Proposal {
     @JoinColumn(name = "customer")
     private Customer customer;
 
-    public Proposal() {
+    private Proposal() {
         this.createdAt = new Date();
         status = Status.ANALYZING;
     }
@@ -28,6 +35,11 @@ public class Proposal {
     public Proposal(Customer customer) {
         this();
         this.customer = customer;
+    }
+
+    public Proposal(Date approvedAt, Customer customer) {
+        this(customer);
+        this.approvedAt = approvedAt;
     }
 
     public Long getId() {
@@ -76,5 +88,29 @@ public class Proposal {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public String getReasonDisaproved() {
+        return reasonDisaproved;
+    }
+
+    public void setReasonDisaproved(String reasonDisaproved) {
+        this.reasonDisaproved = reasonDisaproved;
+    }
+
+    public BigDecimal getMaxLimit() {
+        return maxLimit;
+    }
+
+    public void setMaxLimit(BigDecimal maxLimit) {
+        this.maxLimit = maxLimit;
+    }
+
+    public BigDecimal getMinLimit() {
+        return minLimit;
+    }
+
+    public void setMinLimit(BigDecimal minLimit) {
+        this.minLimit = minLimit;
     }
 }

@@ -15,18 +15,14 @@ public class Customer {
 	private String socialId;
 	private Integer age;
 	private Character gener;
-	private String civilStatus;
 	private String state;
 	private Integer dependents;
 	private BigDecimal salary;
 
-
-
-	public Customer() {
-	}
+	@Enumerated(EnumType.ORDINAL)
+	private CivilStatus civilStatus;
 
 	public Customer(String fullName, String socialId) {
-		this();
 		this.fullName = fullName;
 		this.socialId = socialId;
 	}
@@ -71,14 +67,6 @@ public class Customer {
 		this.gener = gener;
 	}
 
-	public String getCivilStatus() {
-		return civilStatus;
-	}
-
-	public void setCivilStatus(String civilStatus) {
-		this.civilStatus = civilStatus;
-	}
-
 	public String getState() {
 		return state;
 	}
@@ -101,5 +89,13 @@ public class Customer {
 
 	public void setSalary(BigDecimal salary) {
 		this.salary = salary;
+	}
+
+	public CivilStatus getCivilStatus() {
+		return civilStatus;
+	}
+
+	public void setCivilStatus(CivilStatus civilStatus) {
+		this.civilStatus = civilStatus;
 	}
 }

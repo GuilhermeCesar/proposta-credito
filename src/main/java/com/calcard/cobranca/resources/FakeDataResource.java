@@ -1,5 +1,6 @@
 package com.calcard.cobranca.resources;
 
+import com.calcard.cobranca.model.CivilStatus;
 import com.calcard.cobranca.model.Customer;
 import com.calcard.cobranca.model.Proposal;
 import com.calcard.cobranca.repository.CustomerRepository;
@@ -24,17 +25,17 @@ public class FakeDataResource {
     public String createFakeData(){
         Customer customer = new Customer("Guilherme César Medeiros","08700209945");
         customer.setAge(15);
-        customer.setCivilStatus("Solteiro");
+        customer.setCivilStatus(CivilStatus.SINGLE);
 
-        customerRepository.save(customer);
-        proposalRepository.save(new Proposal(customer));
+        this.customerRepository.save(customer);
+        this.proposalRepository.save(new Proposal(customer));
 
         customer = new Customer("Bruno","0870014578");
         customer.setAge(15);
-        customer.setCivilStatus("Solteiro");
+        customer.setCivilStatus(CivilStatus.SINGLE);
 
-        customerRepository.save(customer);
-        proposalRepository.save(new Proposal(customer));
+        this.customerRepository.save(customer);
+        this.proposalRepository.save(new Proposal(customer));
 
         return "Agora você tem dados!";
     }
