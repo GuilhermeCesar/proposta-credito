@@ -1,7 +1,7 @@
 package com.calcard.cobranca.service;
 
 
-import com.calcard.cobranca.Dto.CustomerDto;
+import com.calcard.cobranca.dto.CustomerDto;
 import com.calcard.cobranca.exception.ProposalNotExistException;
 import com.calcard.cobranca.model.CivilStatus;
 import com.calcard.cobranca.model.Customer;
@@ -40,22 +40,6 @@ public class ProposalService {
 	   return proposal.get();
    	}
 
-
-   	private CivilStatus getCivilStatus(String civilStatus){
-		switch (civilStatus.toUpperCase()){
-			case "MARRIED":
-				return CivilStatus.MARRIED;
-			case "SINGLE":
-				return CivilStatus.SINGLE;
-			case "DIVORCED":
-				return CivilStatus.DIVORCED;
-			case "WIDOWER":
-				return CivilStatus.WIDOWER;
-			default:
-				return CivilStatus.SINGLE;
-		}
-	}
-
 	/**
 	 * Cria uma nova {@link Proposal}
 	 * @param customerDto
@@ -64,7 +48,7 @@ public class ProposalService {
    	public Proposal createProposal(CustomerDto customerDto){
 		Customer customer = new Customer(customerDto.getFullName(), customerDto.getSocialId());
 		customer.setAge(customerDto.getAge());
-		customer.setCivilStatus(this.getCivilStatus(customerDto.getCivilStatus()));
+		customer.setCivilStatus(CivilStatus.valueOf(customerDto.getCivilStatus().toUpperCase()));
 		customer.setDependents(customerDto.getDependents());
 		customer.setState(customerDto.getState());
 		customer.setSalary(new BigDecimal(customerDto.getSalary()));

@@ -1,6 +1,6 @@
 package com.calcard.cobranca.resources;
 
-import com.calcard.cobranca.Dto.CustomerDto;
+import com.calcard.cobranca.dto.CustomerDto;
 import com.calcard.cobranca.exception.ProposalNotExistException;
 import com.calcard.cobranca.model.Proposal;
 import com.calcard.cobranca.service.ProposalService;

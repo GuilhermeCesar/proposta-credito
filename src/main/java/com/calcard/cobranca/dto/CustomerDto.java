@@ -1,4 +1,4 @@
-package com.calcard.cobranca.Dto;
+package com.calcard.cobranca.dto;
 
 import java.io.Serializable;
 

@@ -1,6 +1,6 @@
 package com.calcard.cobranca.resources;
 
-import com.calcard.cobranca.Dto.CustomerDto;
+import com.calcard.cobranca.dto.CustomerDto;
 import com.calcard.cobranca.model.CivilStatus;
 import com.calcard.cobranca.model.Customer;
 import com.calcard.cobranca.model.Proposal;
