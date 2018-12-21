@@ -47,9 +47,9 @@ public class ProposalResource {
     public @ResponseBody ResponseEntity<?> createProposal(@ModelAttribute CustomerDto customerDto){
         try {
             this.proposalService.createProposal(customerDto);
-
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception ex){
+            ex.printStackTrace();
             return new ResponseEntity<>("Erro ao criar o cliente",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
