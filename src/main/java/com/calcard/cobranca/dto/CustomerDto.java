@@ -7,7 +7,7 @@ public class CustomerDto implements Serializable {
     private String fullName;
     private String socialId;
     private Integer age;
-    private Character gener;
+    private String gener;
     private String civilStatus;
     private String state;
     private Integer dependents;
@@ -35,14 +35,6 @@ public class CustomerDto implements Serializable {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public Character getGener() {
-        return gener;
-    }
-
-    public void setGener(Character gener) {
-        this.gener = gener;
     }
 
     public String getCivilStatus() {
@@ -75,5 +67,27 @@ public class CustomerDto implements Serializable {
 
     public void setSalary(String salary) {
         this.salary = salary;
+    }
+
+    public String getGener() {
+        return gener;
+    }
+
+    public void setGener(String gener) {
+        this.gener = gener;
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerDto{" +
+                "fullName='" + fullName + '\'' +
+                ", socialId='" + socialId + '\'' +
+                ", age=" + age +
+                ", gener=" + gener +
+                ", civilStatus='" + civilStatus + '\'' +
+                ", state='" + state + '\'' +
+                ", dependents=" + dependents +
+                ", salary='" + salary + '\'' +
+                '}';
     }
 }

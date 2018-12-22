@@ -44,10 +44,10 @@ public class ProposalResource {
 
     @CrossOrigin
     @PostMapping
-    public @ResponseBody ResponseEntity<?> createProposal(@ModelAttribute CustomerDto customerDto){
+    public @ResponseBody ResponseEntity<?> createProposal(@RequestBody CustomerDto customerDto){
         try {
             this.proposalService.createProposal(customerDto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>("Salvo com sucesso",HttpStatus.OK);
         }catch (Exception ex){
             ex.printStackTrace();
             return new ResponseEntity<>("Erro ao criar o cliente",HttpStatus.INTERNAL_SERVER_ERROR);
