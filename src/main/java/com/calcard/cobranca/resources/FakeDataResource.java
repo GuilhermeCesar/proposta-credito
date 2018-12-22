@@ -1,9 +1,6 @@
 package com.calcard.cobranca.resources;
 
 import com.calcard.cobranca.dto.CustomerDto;
-import com.calcard.cobranca.model.CivilStatus;
-import com.calcard.cobranca.model.Customer;
-import com.calcard.cobranca.model.Proposal;
 import com.calcard.cobranca.repository.CustomerRepository;
 import com.calcard.cobranca.repository.ProposalRepository;
 import com.calcard.cobranca.service.ProposalService;
@@ -31,7 +28,7 @@ public class FakeDataResource {
         customerDto.setAge(25);
         customerDto.setCivilStatus("SINGLE");
         customerDto.setDependents(4);
-        customerDto.setGener('M');
+        customerDto.setGener("M");
         customerDto.setSalary("20000");
         customerDto.setSocialId("08700209945");
         customerDto.setState("Santa Catarina");
@@ -39,12 +36,17 @@ public class FakeDataResource {
 
         this.proposalService.createProposal(customerDto);
 
-        Customer customer = new Customer("Bruno","0870014578");
-        customer.setAge(15);
-        customer.setCivilStatus(CivilStatus.SINGLE);
+        customerDto = new CustomerDto();
+        customerDto.setAge(25);
+        customerDto.setCivilStatus("DIVORCED");
+        customerDto.setDependents(4);
+        customerDto.setGener("M");
+        customerDto.setSalary("2000");
+        customerDto.setSocialId("087001");
+        customerDto.setState("Santa Catarina");
+        customerDto.setFullName("Bruno");
 
-        this.customerRepository.save(customer);
-        this.proposalRepository.save(new Proposal(customer));
+        this.proposalService.createProposal(customerDto);
 
         return "Agora você tem dados!";
     }

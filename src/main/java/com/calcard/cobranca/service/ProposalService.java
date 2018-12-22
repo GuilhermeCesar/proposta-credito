@@ -26,7 +26,7 @@ public class ProposalService {
 
 	/**
 	 * Busca todas as {@link Proposal}
-	 * @return
+	 * @return {@link Iterable}
 	 */
 	public Iterable<Proposal> searchAllProposals(){
 		return this.proposalRepository.findAll();
@@ -42,8 +42,8 @@ public class ProposalService {
 
 	/**
 	 * Cria uma nova {@link Proposal}
-	 * @param customerDto
-	 * @return
+	 * @param customerDto {@link CustomerDto}
+	 * @return {@link Proposal}
 	 */
    	public Proposal createProposal(CustomerDto customerDto){
 		Customer customer = new Customer(customerDto.getFullName(), customerDto.getSocialId());
@@ -52,7 +52,7 @@ public class ProposalService {
 		customer.setDependents(customerDto.getDependents());
 		customer.setState(customerDto.getState());
 		customer.setSalary(new BigDecimal(customerDto.getSalary()));
-		customer.setGener(customerDto.getGener());
+		customer.setGener(customerDto.getGener().charAt(0));
 
 		this.customerRepository.save(customer);
 
@@ -126,7 +126,7 @@ public class ProposalService {
 
 	/**
 	 * Analisa o {@link Customer} alterando os dados da {@link Proposal}
-	 * @param customer
+	 * @param customer {@link Customer}
 	 * @return {@link Proposal}
 	 */
 	private Proposal analizeProposal(Customer customer){
