@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class ProposalService {
@@ -32,12 +32,16 @@ public class ProposalService {
 		return this.proposalRepository.findAll();
 	}
 
-   	public Proposal searchProposal(Long id) {
-	   Optional<Proposal> proposal = this.proposalRepository.findById(id);
+   	public Iterable<Proposal> searchProposalBySocialId(String socialId) {
+		socialId = socialId.replaceAll("\\D","");
 
-	   proposal.orElseThrow(()->new ProposalNotExistException("Não existe essa Proposta"));
+	   List<Proposal> proposals = (List<Proposal>) this.proposalRepository.findProposalsByCustomer(socialId);
 
-	   return proposal.get();
+		if(proposals == null || proposals.isEmpty()){
+			throw new ProposalNotExistException("Não existe essa Proposta");
+		}
+
+	   return proposals;
    	}
 
 	/**

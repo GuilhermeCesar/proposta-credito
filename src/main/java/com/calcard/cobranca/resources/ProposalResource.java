@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+@CrossOrigin
 @RestController
 @RequestMapping("/proposals")
 public class ProposalResource {
@@ -17,7 +18,6 @@ public class ProposalResource {
     @Autowired
     private ProposalService proposalService;
 
-    @CrossOrigin
     @GetMapping
     public @ResponseBody ResponseEntity<?> searchAllProposals(){
         try{
@@ -28,12 +28,12 @@ public class ProposalResource {
         }
     }
 
-    @CrossOrigin
-    @GetMapping(value = "/{id}")
-    public @ResponseBody ResponseEntity<?> searchProposalById(@PathVariable("id") Long id){
+
+    @GetMapping(value = "/{socialId}")
+    public @ResponseBody ResponseEntity<?> searchProposalById(@PathVariable("socialId") String socialId){
         try {
-            Proposal proposal = this.proposalService.searchProposal(id);
-            return new ResponseEntity<>(proposal, HttpStatus.OK);
+            Iterable<Proposal> proposals = this.proposalService.searchProposalBySocialId(socialId);
+            return new ResponseEntity<>(proposals, HttpStatus.OK);
         }catch (ProposalNotExistException ex){
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }catch (Exception ex){
@@ -42,12 +42,11 @@ public class ProposalResource {
         }
     }
 
-    @CrossOrigin
     @PostMapping
     public @ResponseBody ResponseEntity<?> createProposal(@RequestBody CustomerDto customerDto){
         try {
-            this.proposalService.createProposal(customerDto);
-            return new ResponseEntity<>("Salvo com sucesso",HttpStatus.OK);
+            Proposal proposal = this.proposalService.createProposal(customerDto);
+            return new ResponseEntity<>(proposal,HttpStatus.CREATED);
         }catch (Exception ex){
             ex.printStackTrace();
             return new ResponseEntity<>("Erro ao criar o cliente",HttpStatus.INTERNAL_SERVER_ERROR);
