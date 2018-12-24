@@ -9,6 +9,7 @@
 #Docker-machine
 - Caso você utilize Windows antigo, deve alterar o Ip do banco 
 - Utilize o comando docker-machine ip  para saber 
+utilizar o comando docker-compose up na raiz
 
 
 Para rodar o projeto
